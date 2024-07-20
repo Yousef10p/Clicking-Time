@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>javaScript</title>
+
+  <style>
+    .container {
+      display: flex;
+      border: solid red;
+      height: 28em;
+
+    }
+
+    #shape {
+      height: 5rem;
+      width: 5rem;
+      background-color: black;
+      margin-top: 19.5%;
+      margin-left: 96%;
+    }
+
+    #timeSpent {
+      margin-bottom: 5rem;
+    }
+  </style>
+
+</head>
+
+<body onload="Tim()">
+  <button id="restart">Restart</button>
+  <h3 id="bestTime">Best Time:</h3>
+  <p id="timeSpent">Time spent:</p>
+  <div class="container">
+    <div id="shape"></div>
+  </div>
+
+  <script>
+    let start = end = elp = 0, bestTime = Number.MAX_SAFE_INTEGER;
+    function Tim() {
+      start = new Date();
+    }
+
+
+
+    document.getElementById("shape").onclick = function () {
+      end = new Date();
+      elp = (end - start) / 1000;
+      elp = Number(elp.toFixed(2));
+      if (elp < bestTime) {
+        bestTime = elp;
+        document.getElementById("bestTime").innerHTML = `Best Time: ${bestTime}s`
+      }
+      document.getElementById("timeSpent").innerHTML = `Time spent: ${elp}s`;
+
+      let s = document.getElementById("shape");
+      s.style.marginTop = `${Math.floor(Math.random() * 17)}%`;
+      s.style.marginLeft = `${Math.floor(Math.random() * 96)}%`;
+      s.style.borderRadius = `${Math.floor(Math.random() * 20)}rem`;
+      s.style.width = `${5 + Math.floor(Math.random() * 8)}rem`
+      s.style.height = `${3 + Math.floor(Math.random() * 8)}rem`
+
+      switch (Math.floor(Math.random() * 5)) {
+        case 0:
+          s.style.backgroundColor = "black"; break;
+        case 1:
+          s.style.backgroundColor = "gray"; break;
+        case 2:
+          s.style.backgroundColor = "purple"; break;
+        case 3:
+          s.style.backgroundColor = "green"; break;
+        case 4:
+          s.style.backgroundColor = "red"; break;
+      }
+      start = new Date();
+    }
+
+    document.getElementById("restart").onclick = function () {
+      start = end = elp = 0, bestTime = Number.MAX_SAFE_INTEGER;
+      Tim();
+      document.getElementById("bestTime").innerHTML = `Best Time:`;
+      document.getElementById("timeSpent").innerHTML = `Time spent:`;
+    }
+
+  </script>
+</body>
+
+</html>
